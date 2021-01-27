@@ -1,13 +1,17 @@
 import { useQuery } from '@urql/preact'
 import { route } from 'preact-router'
-
+import {h, FunctionComponent} from 'preact';
 import { queries } from '../../services/graphqlService'
-import { routePicture } from '../../utils/routes'
-import { Spinner, Picture } from '../'
+// import { routePicture } from '../../utils/routes'; not being use
+import { Spinner, Picture } from '..'
 import style from './style.css'
 
-const RoutePreview = ({ _id }) => {
-  const [{ data, fetching }, _] = useQuery({
+type RoutePrevProps ={
+  _id: string
+}
+
+const RoutePreview: FunctionComponent<RoutePrevProps> = ({ _id }) => {
+  const [{ data, fetching }] = useQuery({ // erased , _
     query: queries.routeDetailsQuery,
     variables: { _id }
   })

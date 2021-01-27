@@ -1,12 +1,21 @@
+import {h, VNode} from 'preact';
 import { useContext, useState } from 'preact/hooks'
 import { createContext } from 'preact'
 import JwtDecode from 'jwt-decode'
-
 import * as authService from '../services/authService'
 
-const AuthContext = createContext()
+type ContextProps = { 
+  user?: null,
+  register: Promise,
+  login: Promise<>,
+  logout: Promise
+};
+type AuthProviderProps = {
 
-function AuthProvider (props) {
+}
+const AuthContext = createContext<Partial<ContextProps>>({});
+
+function  AuthProvider (props): VNode<AuthProviderProps> {
   const [user, setUser] = useState(null)
 
   const loginWithToken = (token) => {

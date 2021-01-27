@@ -1,8 +1,13 @@
+import {h, FunctionComponent} from 'preact';
 import { route } from 'preact-router'
 import { gradeBckgColor, gradeColor } from '../../utils/routes'
-import style from './style.css'
+import style from './style.css';
 
-const SmallRouteCard = ({ data: { name, grade, _id } }) =>
+type smallRouteCardProps = {
+  data: { name:string, grade:string, _id:string}
+}
+
+const SmallRouteCard: FunctionComponent<smallRouteCardProps> = ({ data: { name, grade, _id } }) =>
   <div class={style.smallCard} onClick={() => route(`/route/${_id}`)} >
     <h3 class={style.name}>{name}</h3>
     <div

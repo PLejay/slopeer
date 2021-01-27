@@ -1,17 +1,26 @@
 {
+  "private": true,
   "name": "client",
   "version": "1.0.0",
-  "description": "## CLI Commands",
-  "main": "jest.config.js",
-  "directories": {
-    "test": "tests"
+  "jest":{
+    "verbose":true
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "preact build",
+    "serve": "sirv build --port 8080 --cors --single",
+    "dev": "preact watch",
+    "lint": "eslint src",
+    "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
+  "eslintConfig": {
+    "extends": "preact",
+    "ignorePatterns": [
+      "build/",
+      "node_modules/"
+    ]
+  },
   "dependencies": {
+    "@types/node-fetch": "^2.5.8",
     "@urql/exchange-graphcache": "^3.4.0",
     "@urql/exchange-multipart-fetch": "^0.1.11",
     "@urql/preact": "^1.4.4",
@@ -27,6 +36,9 @@
     "worker-loader": "^3.0.7"
   },
   "devDependencies": {
+    "@testing-library/preact": "^2.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^3.0.0",
     "eslint": "^7.18.0",

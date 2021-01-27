@@ -1,7 +1,8 @@
 import { useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
 
-const Redirect = ({ to }) => {
+type router_route = {to:string,replaceCurrentRoute:boolean}
+const Redirect = ({ to }:router_route) => {
   useEffect(() => {
     route(to)
   }, [])
