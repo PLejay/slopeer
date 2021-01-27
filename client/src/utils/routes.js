@@ -1,5 +1,7 @@
 import { routePicturesUrl } from '../config'
 
+
+
 const gradeColors = {
   1: ['#EAE2B7', 'black'],
   2: ['#EAE2B7', 'black'],
