@@ -11,7 +11,9 @@ export const routes = async (_: any, args: [string]) =>
   await Route.find({ ...args })
     .populate('author');
 
-export const route = async (_: any, { _id }: Input) => await Route.findById(_id).populate('author');
+export const route = async (_: any, { _id }: Input) =>
+  await Route.findById(_id)
+    .populate('author');
 
 export const user = async (_: any, { _id }: Input) =>
   await User.findById(_id)

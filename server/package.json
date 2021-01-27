@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest src/tests/apolloTest.test.ts",
+    "test": "jest src/tests-v2/t.test.ts",
     "compile": "tsc --watch --strict --noImplicitReturns --noUnusedLocals --noUnusedParameters --esModuleInterop --incremental --outDir build --rootDir src"
   },
   "author": "",

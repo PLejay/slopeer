@@ -11,13 +11,13 @@ import {TestDB, DB_HOST } from './jest.setup-file';
 
 
 //mocking connection to DB and GraphQL
-type express= {res:Response, req: Request}  
+type express= {res:Response, req: Request}
 export const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req, res }:express) => ({ req, res }),
   uploads: false
-  
+
   // mocks:true,
   // mockEntireSchema: false,
 });
@@ -60,42 +60,42 @@ createUser(input: {email: "test", username: "mail_2@mail.com", password: "passwo
 }`
 
 describe('Add new user', ()=> {
-  
+
   const { mutate} = createTestClient(server as any);
-  
- 
- 
+
+
+
   const mockUser = {
     username: 'test',
     email: 'mail_1@dots.com',
     password: 'test1'
   }
- 
 
-  
+
+
   // it('should get routes', async ()=> {
   // const res = await query({query:queries.GET_ROUTES})
   // console.log(res, 'res')
   // expect(res).toMatchSnapshot();
   // })
-  
+
   test('should add a new user', async ()=>{
     let res = await mutate ({
-      mutation: REGISTER, 
-      variables: { 
+      mutation: REGISTER,
+      variables: {
         ...mockUser
       }});
     console.log(res, 'res')
     expect(res).toBeTruthy();
-    
-    
+
+
     res =  await mutate ({mutation: mutations.LOGIN,variables: {email: mockUser.email, password: mockUser.password}});
-    //what to expect? 
-    
+    //what to expect?
+
     expect (res.data.user).toBeTruthy()
     //how can we access the recently created user make a query with its id if the id is created by mongo
-    // res = await query ({query:queries.GET_USER_DATA, variables:{_id:}})  
-    
+    // res = await query ({query:queries.GET_USER_DATA, variables:{_id:}})
+
 
   });
 

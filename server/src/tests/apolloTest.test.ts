@@ -15,20 +15,20 @@ lat: '0023.023.23',
 lng: '2100.103.90'
 }
 
-//mock db content 
+//mock db content
 jest.spyOn(Route, 'find')
       .mockImplementationOnce(() => {
         return {populate: ()=> [mockRoute] }
       }) //mock find method
 
-type express= {res:Response, req: Request}  
+type express= {res:Response, req: Request}
 
 export const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req, res }:express) => ({ req, res }),
   uploads: false
-  
+
   // mocks:true,
   // mockEntireSchema: false,
 });
@@ -51,7 +51,7 @@ describe('route query', ()=>{
   it('is able to get routes', async ()=> {
     const res = await query({query:GET_ROUTES})
     console.log(res.data.routes, 'res')
-   
+
     //snapshot shows that the data is there, but cant probe anything else
     expect(res).toMatchSnapshot();
      //as the query is just getting 4 of the elements that are part of route it does not pass a test toEqual
@@ -61,7 +61,7 @@ describe('route query', ()=>{
   // it('should get routes', async ()=> {
   //   const res = await query({query:GET_ROUTES})
   //   console.log(res, 'res')
-  //   
+  //
   // })
 
 
