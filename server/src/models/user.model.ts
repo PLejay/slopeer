@@ -2,8 +2,7 @@ import { Document, Schema, model } from 'mongoose';
 // const { Schema, model} = require('mongoose');
 // const { Document} = require('mongoose');
 const jwt = require('jsonwebtoken');
-
-export class ClassUser {
+class ClassUser {
   _id: any
   email: string;
   username: String;
