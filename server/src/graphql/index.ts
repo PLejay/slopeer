@@ -6,7 +6,7 @@ import jwtCheck from '../middleware/jwtCheck';
 import typeDefs from './schemas';
 import resolvers from './resolvers';
 
-const server = new ApolloServer({
+export const server = new ApolloServer({
   typeDefs: typeDefs,
   resolvers: resolvers,
   // typeDefs: require('./schemas'),
@@ -24,5 +24,6 @@ app
 .use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 11 }))
 
 server.applyMiddleware({ app });
+
 
 export default app;

@@ -1,10 +1,10 @@
 //Queries 
 
-import { gql } from "apollo-server-express";
+
 
 export const queries = {
 
-GET_ROUTES: gql`
+GET_ROUTES: `
 query{
   routes(public: true) {
     _id
@@ -14,7 +14,7 @@ query{
   }
 }`,
 
-GET_USER_ROUTES: gql`
+GET_USER_ROUTES: `
 query ($_id: ID!) {
   user(_id: $_id) {
     _id
@@ -35,7 +35,7 @@ query ($_id: ID!) {
   }
 }
 `,
-GET_ROUTE_DETAIL: gql`
+GET_ROUTE_DETAIL: `
   query ($_id: ID!) {
     route(_id: $_id) {
       _id
@@ -54,7 +54,7 @@ GET_ROUTE_DETAIL: gql`
   }
   }
 `,
-GET_USER_DATA: gql`
+GET_USER_DATA: `
 query($_id: ID!) {
   user(_id: $_id) {
     _id
@@ -73,15 +73,15 @@ query($_id: ID!) {
 //Mutations 
 export const mutations = {
 
-LOGIN: gql`
+LOGIN: `
 mutation($email: String!, $password:String!) {
   login(email: $email, password:$password)
 }`,
-REGISTER: gql`
+REGISTER:`
 mutation($email: String!, $username:String!, $password:String!) {
 createUser(input: {email: $email, username: $username, password: $password})
 }`,
-SAVE_ROUTE: gql`
+SAVE_ROUTE: `
 mutation($userId: ID!, $routeId: ID!) {
   saveRoute(userId: $userId, routeId: $routeId) {
     _id
@@ -90,7 +90,7 @@ mutation($userId: ID!, $routeId: ID!) {
     }
   }
 }`,
-UNSAVE_ROUTE : gql`
+UNSAVE_ROUTE : `
 mutation($userId: ID!, $routeId: ID!) {
   unsaveRoute(userId: $userId, routeId: $routeId) {
     _id
@@ -99,7 +99,7 @@ mutation($userId: ID!, $routeId: ID!) {
     }
   }
 }`,
-CREATE_ROUTE : gql`
+CREATE_ROUTE : `
 mutation($name: String!, $grade: String!, $public:Boolean!, $author: ID!, $lat: String!, $lng: String!, $type: String!, $picture: FileUpload, $description: String) {
   createRoute(input: {
     name: $name,
@@ -115,7 +115,7 @@ mutation($name: String!, $grade: String!, $public:Boolean!, $author: ID!, $lat: 
     _id
   }
 }`,
-UPDATE_ROUTE: gql`
+UPDATE_ROUTE: `
 mutation($_id: ID!, $name: String!, $grade: String!, $public:Boolean!, $type: String!, $picture: FileUpload, $description: String) {
 updateRoute(
   _id: $_id,
@@ -130,7 +130,7 @@ updateRoute(
   _id
 }
 }`, 
-UPDATE_USER:  gql`
+UPDATE_USER:  `
 mutation($_id:ID! ,$username: String!, $profile_picture: FileUpload){
 updateUser(_id:$_id, input: {username: $username, profile_picture:$profile_picture}){
   _id
