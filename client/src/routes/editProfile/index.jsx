@@ -1,3 +1,4 @@
+/// <reference lib="dom" />
 import { useMutation } from '@urql/preact'
 import { useState, useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
@@ -6,19 +7,23 @@ import { mutations, client, queries } from '../../services/graphqlService'
 import { FormCard, Upload } from '../../components'
 import { useAuth } from '../../context/AuthContext'
 
+
 const EditProfile = () => {
   const { user } = useAuth()
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState({
+  })
 
-  useEffect(async () => {
-    const currentData = await client.query(queries.userDataQuery, { _id: user }).toPromise()
-    const { username } = currentData.data.user
-    setUserData({ username })
+  useEffect(() => {
+    async ()=> {
+      const currentData = await client.query(queries.userDataQuery, { _id: user }).toPromise()
+      const { username } = currentData.data.user
+      setUserData( username )
+    }
   }, [])
 
   const [{ fetching: updatingProfile }, updateProfile] = useMutation(mutations.updateUser)
 
-  const handleChange = (e) => {
+  const handleChange= (e) => {
     if (e.target.name === 'profile_picture') {
       if (e.target.validity.valid && e.target.files) {
         setUserData(prevData => ({
@@ -36,7 +41,7 @@ const EditProfile = () => {
 
   const updateUser = async (e) => {
     e.preventDefault()
-    const { username, profile_picture } = userData
+    const { username, profile_picture }= userData
     const res = await updateProfile({ _id: user, username, profile_picture })
     route(`/profile/${user}`, true)
   }

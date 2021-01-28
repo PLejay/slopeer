@@ -1,9 +1,11 @@
 import { routePicturesUrl } from '../config'
 
-const gradeColors = {
-  1: ['#EAE2B7', 'black'],
-  2: ['#EAE2B7', 'black'],
-  3: ['#EAE2B7', 'black'],
+
+
+const gradeColors: {[key:string]:string[]} = {
+  '1': ['#EAE2B7', 'black'],
+  '2': ['#EAE2B7', 'black'],
+  '3': ['#EAE2B7', 'black'],
   '4a': ['#EAE2B7', 'black'],
   '4b': ['#EAE2B7', 'black'],
   '4c': ['#EAE2B7', 'black'],
@@ -72,10 +74,10 @@ const grades = [
   '9c+'
 ]
 
-const gradeBckgColor = grade => gradeColors[grade][0]
-const gradeColor = grade => gradeColors[grade][1]
+const gradeBckgColor = (grade:string) => gradeColors[grade][0]
+const gradeColor = (grade:string) => gradeColors[grade][1]
 
-const selectPlaceholder = (type) => {
+const selectPlaceholder = (type:string) => {
   switch (type) {
     case 'boulder':
       return '/assets/images/boulder.png'
@@ -86,6 +88,6 @@ const selectPlaceholder = (type) => {
   }
 }
 
-const routePicture = (picture, type) => picture ? routePicturesUrl + picture : selectPlaceholder(type)
+const routePicture = (picture:string, type:string) => picture ? routePicturesUrl + picture : selectPlaceholder(type)
 
 export { gradeBckgColor, gradeColor, routePicture, grades, selectPlaceholder }

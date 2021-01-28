@@ -1,10 +1,13 @@
-import { useState } from 'preact/hooks'
+import { useState } from 'preact/hooks';
+import {h, FunctionComponent} from 'preact';
+import style from './style.css';
+const upload = '/assets/images/upload.svg';
+const selected = '/assets/images/done.svg';
 
-import style from './style.css'
-const upload = '/assets/images/upload.svg'
-const selected = '/assets/images/done.svg'
-
-const Upload = ({ name }) => {
+type UploadProps ={
+name:string
+}
+const Upload:FunctionComponent<UploadProps> = ({ name }) => {
   const [fileSelected, setFileSelected] = useState(null)
 
   const handleChange = (e) => {

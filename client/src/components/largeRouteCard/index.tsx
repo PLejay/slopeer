@@ -8,7 +8,7 @@ type LargeRouteCardProps = {
   data: {
     picture: string;
     name: string;
-    grade: number | string;
+    grade: string;
     _id: string;
     type: string;
   }

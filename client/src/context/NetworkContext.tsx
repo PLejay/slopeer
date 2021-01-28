@@ -1,9 +1,13 @@
+import {h, VNode} from 'preact';
 import { useContext, useState } from 'preact/hooks'
 import { createContext } from 'preact'
 
-const NetworkContext = createContext()
+type NetContextProps={
+online:boolean;
+}
+const NetworkContext = createContext<Partial<NetContextProps>>({})
 
-function NetworkProvider (props) {
+function NetworkProvider (props:any):VNode {
   const [online, setOnline] = useState(true)
   if (typeof window !== 'undefined') {
     setOnline(navigator.onLine)

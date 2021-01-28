@@ -1,18 +1,30 @@
+import {h, VNode} from 'preact';
 import { useContext, useState } from 'preact/hooks'
 import { createContext } from 'preact'
-import JwtDecode from 'jwt-decode'
-
+import JwtDecode, {JwtPayload} from 'jwt-decode'
 import * as authService from '../services/authService'
+import { credentials, userData } from '../types/types';
 
-const AuthContext = createContext()
+export type customJwtPayload = JwtPayload & { _id: string };
 
-function AuthProvider (props) {
-  const [user, setUser] = useState(null)
+type ContextProps = { 
+  user?: null,
+  register: Promise<string|void>,
+  login: Promise<string>,
+  logout: Promise<void>
+};
 
-  const loginWithToken = (token) => {
+ 
+
+const AuthContext = createContext<Partial<ContextProps>>({});
+
+function  AuthProvider (props:any): VNode {
+  const [user, setUser] = useState<string | null>(null)
+
+  const loginWithToken = (token:string) => {
     try {
-      const { _id, exp } = JwtDecode(token)
-      if (Date.now() > exp * 1000) throw new Error()
+      const { _id, exp } = JwtDecode<customJwtPayload>(token)
+      if (Date.now() > exp! * 1000) throw new Error()
       if (typeof window !== 'undefined') {
         localStorage.setItem('accessToken', token)
       }
@@ -32,13 +44,13 @@ function AuthProvider (props) {
 
   checkUser()
 
-  const login = async (credentials) => {
+  const login = async (credentials:credentials) => {
     const { data: { login: token } } = await authService.login(credentials)
     if (token) loginWithToken(token)
     return !!token
   }
 
-  const register = async (data) => {
+  const register = async (data:userData) => {
     const result = await authService.register(data)
     console.log('result: ', result)
     const { data: { createUser: token } } = result
