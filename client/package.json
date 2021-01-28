@@ -2,8 +2,8 @@
   "private": true,
   "name": "client",
   "version": "1.0.0",
-  "jest":{
-    "verbose":true
+  "jest": {
+    "verbose": true
   },
   "scripts": {
     "build": "preact build",
@@ -20,6 +20,7 @@
     ]
   },
   "dependencies": {
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/node-fetch": "^2.5.8",
     "@urql/exchange-graphcache": "^3.4.0",
     "@urql/exchange-multipart-fetch": "^0.1.11",

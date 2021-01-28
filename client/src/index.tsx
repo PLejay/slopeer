@@ -1,3 +1,4 @@
+import {h} from 'preact';
 import { Provider } from '@urql/preact'
 import { client } from './services/graphqlService'
 import './style'
